@@ -1,0 +1,57 @@
+# fraction, prime division
+# example numbers (denominator, Nenner) => [6,12,24,18,25,15]
+
+# result should look like this
+ a|b
+--+--
+ d|c
+
+# where a are the col and the rows for the denominator
+# b are the cols and the rows for the primefactors of each denominator
+# c are the row and the cols of the total primefactors for the lowest common multiple 
+# d is the cell for the result of the lowest common multiple
+
+for the example numbers it should look like this 
+
+   6|2     3
+  12|2 2   3
+  15|      3   5
+  18|2     3 3
+  24|2 2 2 3
+  25|          5 5
+----+-------------
+1800|2 2 2 3 3 5 5
+
+# ruby code (first tries)
+
+# how to get primefactors (for example numbers)
+6.prime_division
+=> [[2,1],[3,1]]
+
+12.prime_division
+=> [[2,2],[3,1]]
+
+15.prime_division
+=> [[3,1],[5,1]]
+
+18.prime_division
+=> [[2,1],[3,2]]
+
+24.prime_division
+=> [[2,3],[3,1]]
+
+25.prime_division
+=> [[5,2]]
+
+
+u = a | b |c # how to get uniq data
+
+m = u.group_by(& :first).map { |f,l| l.max} # how to get only the highest index for one primefactor
+
+# how much primefactors do we need at all?
+p = m.map { |f,l| l}.sum
+
+# shortform if only the lowest common multiple (as result) is needed
+r = [6,9,18].reduce(1,:lcm)
+
+
