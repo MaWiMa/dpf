@@ -2,14 +2,15 @@
 # example numbers (denominator, Nenner) => [6,12,24,18,25,15]
 
 # result should look like this
- a|b
---+--
- d|c
 
-# where a are the col and the rows for the denominator
-# b are the cols and the rows for the primefactors of each denominator
-# c are the row and the cols of the total primefactors for the lowest common multiple 
-# d is the cell for the result of the lowest common multiple
+ (a)|(b)
+ ---+---
+ (d)|(c)
+
+# where (a) are the col and the rows for the denominator
+# (b) are the cols and the rows for the primefactors of each denominator
+# (c) are the row and the cols of the total primefactors for the lowest common multiple 
+# (d) is the cell for the result of the lowest common multiple
 
 for the example numbers it should look like this 
 
@@ -52,6 +53,5 @@ m = u.group_by(& :first).map { |f,l| l.max} # how to get only the highest index 
 p = m.map { |f,l| l}.sum
 
 # shortform if only the lowest common multiple (as result) is needed
-r = [6,9,18].reduce(1,:lcm)
-
+r = [6,12,24,18,25,15].reduce(1,:lcm) # not my idea, someone did this before
 
