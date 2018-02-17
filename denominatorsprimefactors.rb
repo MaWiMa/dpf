@@ -18,32 +18,41 @@ q = ""
 n.each { |i|
   j = i.prime_division
   k = k|j
-}
+} # get the array of all (j) but uniq (k) primefactors
 
 p = k.group_by(&:first).map { |f,l| 
   l.max
-}
+} # get the array of the primefactors for result, only primefactors with highest index (l.max) needed
+
+2.times do print "\n" end # only format things
 
 n.each { |b|
-  printf("%" + w1c.to_s + "s ",b) # denominators (a)
-  print "|" # vertical lineparts        
-  b.prime_division.each { |f,l| # prime_division gives us an array with the specific prime(s) and the index, how often this prime(s) appear; example 24 =>[[2,3],[3,1]]
-    l.times do print " ",f end
+  printf("%" + (w1c+1).to_s + "s ",b) # print denominators (a)
+  print  "│"                          # print vertical lineparts with u+2502
+  b.prime_division.each { |f,l|       # prime_division gives us an array with the specific prime(s) and the index, how often this prime(s) appear; example 24 =>[[2,3],[3,1]]
+    i=""
+    l.times do i.concat " ",f.to_s end
+    printf("%s",i) # hope to get things done for cell (b) here
   }
   print "\n"
 }
 
-(w1c+1).times do print "-" end # horizontal line parts on right side
-print "+" # intersection of horizontal and vertical lines 
+print " " # only format things
+(w1c+1).times do print "─" end # horizontal line parts on right side with u+2500
+print "┼" # intersection of horizontal and vertical lines with u+253c
 p.each { |f,l|
   l.times do q.concat(" ",f.to_s) end # get primefactors for result
   w2c = w2c + l*2    
 }
  
-w2c.times do print "-" end  # horizontal line parts on right side
+w2c.times do print "─" end  # horizontal line parts on right side with u+2500
 
-print "\n"
+print "\n" # only format things
+print " "  # only format things
 print r    # result (d)
-print " |" # vertical line part
+print " "  # only format things
+print "│"  # vertical line part with u+2502
 print q    # primefactors for result (c)
-print "\n"
+
+3.times do print "\n" end # only format things
+
