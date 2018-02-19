@@ -1,3 +1,4 @@
+# show how to get primefactors for lowest common multiple, like you would do on paper
 # fraction, prime division
 # example numbers (denominator, Nenner) => [6,12,24,18,25,15]
 
@@ -9,7 +10,7 @@
 
 # where (a) are the col and the rows for the denominator
 # (b) are the cols and the rows for the primefactors of each denominator
-# (c) are the row and the cols of the total primefactors for the lowest common multiple 
+# (c) is the line with the (row and the cols of the) total primefactors for the lowest common multiple 
 # (d) is the cell for the result of the lowest common multiple
 
 for the example numbers it should look like this 
