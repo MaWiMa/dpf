@@ -36,10 +36,13 @@ n.each { |b|
   printf("%" + (w1c+1).to_s + "s ",b) # print denominators (a)
   print  "│"                          # print vertical lineparts with u+2502
   b.prime_division.each { |f,l|       # prime_division gives us an array with the specific prime(s) and the index, how often prime(s) appear; example 24 =>[[2,3],[3,1]]
-    (0..p.length-1).each { |i| #  count every primefactor in array p
+    (0..p.length-1).each { |i| # count every primefactor in array p
       if f == p[i][0] # if b prime == p prime do
         l.times do print " ",f end # print the specific primefactor as often as it appears in b
         (s[i]-l*2).times do print " " end # fill the space to next prime with whitespaces
+      end
+      if f > p[i][0]
+        (s[i]).times do print " " end
       end
     }
   }
