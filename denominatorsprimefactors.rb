@@ -35,20 +35,20 @@ p.each { |f,l|
 2.times do print "\n" end # only format things
 
 n.each { |b|
+  a = b.prime_division
   printf("%" + (w1c+1).to_s + "s ",b) # print denominators (a)
   print  "│"                          # print vertical lineparts with u+2502
-  b.prime_division.each { |f,l|       # prime_division gives us an array with the specific prime(s) and the index, how often prime(s) appear; example 24 =>[[2,3],[3,1]]
-
+  a.each { |f,l| # prime_division gives us an array with the specific prime(s) and the index, how often prime(s) appear; example 24 =>[[2,3],[3,1]]
+    z = a.index([f,l])
     (0..p.length-1).each { |i| # count every primefactor in array p
 
-      if f == p[i][0] # if b prime == p prime do
-        l.times do print " ",f end # print the specific primefactor as often as it appears in b
-        (s[i]-l*2).times do print " " end # fill the space to next prime with whitespaces
-      end
-      if f > p[i][0] and b.prime_division.index([f,l]) == 0 # if first b prime is bigger then p prime on same position (index)
-        (s[i]).times do print " " end # then move to next position
-      end
+      if f > p[i][0] and z <= i and p[i][0] != a[(z-1)][0] # if b prime is bigger than p prime and last b prime not equal to p prime
+        (s[i]).times do print " " end # then fill the space to next prime with whitespaces
 
+      elsif f == p[i][0] # if b prime == p prime do
+        l.times do print " ",f end # then print the specific primefactor as often as it appears in b
+        (s[i]-l*2).times do print " " end # and fill the space to next prime with whitespaces
+     end
 
     }
   }
