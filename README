@@ -1,22 +1,20 @@
-The script dpf.rb will calculate and draw the primefactors of numbers read from file denominators.csv.
+The script dpf.rb (denominatorsprimefactors.rb) will calculate and draw - in text mode - the primefactors of numbers read from file denominators.csv.
+Change denominators.csv for your needs and execute ruby dpf.rb on commandline.
 
-To get the result, you just have to execute ruby dpf.rb on command line.
-Change denominators.csv for your needs.
-
-What you get is an image of a simple table, with the fields (a), (b), (c) and (d). 
+What you get is a simple table, with the fields (a), (b), (c) and (d). 
 
  (a)|(b)
  ---+---
  (d)|(c)
 
 The field (a) has as many rows as numbers in denominators.csv.
-(b) and (c) have as many rows as primefactors for the given numbers exist.
-Each number in (a) is split in its primefactors in (b). Same primes in (b) are placed in same column. If one number has identical primes, these primes are written besides. So every prime has its own column.
-The fields (a) and (d) have only one column and (d) only one row, so (d) is just one cell. In this cell the result -- the lowest common multiple -- is shown.
+(b) and (c) have as many columns as primefactors for the given numbers exist.
+Each number in (a) is split in its primefactors in (b). Same primes in (b) are placed in same column. If one number has identical primes, these primes are written besides. So every prime in one row has its own column.
+The fields (a) and (d) have only one column and (d) only one row, so (d) is just one cell. In this cell the result - the lowest common multiple (lcm) - is shown.
 
 Here is an example like you would draw and calculate on paper.
 At first you draw a simple table of one vertical and one horizontal line.
-This gives you the fields (a), (b), (c) and (d) shown above. In field (a) you place the denominators of your fractions. So this maybe the numbers 6, 12, 15, 18, 24 and 25 of this example.
+This gives you the fields (a), (b), (c) and (d) shown above. In field (a) you place the denominators of your fractions. These maybe the numbers 6, 12, 15, 18, 24 and 25 of this example.
 
    6|
   12|
@@ -28,8 +26,7 @@ This gives you the fields (a), (b), (c) and (d) shown above. In field (a) you pl
     |
 
 
-Next you write the primefactors of each number, beginning with the lowest in numerical order. Near to 6 you write 2, then you write two times 2 near 12, because 12 has this primefactor two times.
-15 does not have this primefactor. 18 has one primefactor 2, 24 has three times primefactor 2. 25 like 15 does not have this primefactor.
+Next you write the primefactors of each number, beginning with the lowest in numerical order. Near to 6 you write 2, then you write two times 2 near 12, because 12 has this primefactor two times. 15 does not have this primefactor. 18 has one primefactor 2, 24 has three times primefactor 2. 25 like 15 does not have this primefactor.
 
    6|2  
   12|2 2
@@ -41,7 +38,7 @@ Next you write the primefactors of each number, beginning with the lowest in num
     |
 
 
-You start again with 6. The last primefactor of 6 is 3, so you write it down in a new column, remember only same primes are written in same column. 12 has this primefactor too. For 15 this is the first primefactor, but because of same primes in same columns it is placed below the 3 above. 8 has two times this primefactor. 24 has it one time. 25 has no primefactor 3.
+You start again with 6. The last primefactor of 6 is 3, so you write it down in a new column, remember only same primes are written in same column. 12 has this primefactor too. For 15 this is the first primefactor, but because of same primes in same columns it is placed below the 3 above. 18 has two times this primefactor. 24 has it one time. 25 has no primefactor 3.
 
    6|2     3
   12|2 2   3
@@ -64,7 +61,7 @@ Again you start with 6, but you are ready here. Next is 12, ready as well. 15 ha
     |
 
 
-Now look to field (c), it has only one row but the same columns as (b). The only thing you have to do here is to write each prime of one column one time, So, for first, second and third column you write 2, then for forth and fifths you write 3 and for both last columns you write down 5.
+Now take a look on field (c), it has only one row but the same columns as (b). The only thing you have to do here is to write each prime of one column one time, So, for first, second and third column you write 2, then for forth and fifth you write 3 and for both last columns you write 5.
 To get the result in field (d) you multiple all primes in (c).
 
    6|2     3
