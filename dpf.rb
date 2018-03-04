@@ -1,8 +1,13 @@
 #!/usr/bin/ruby
 require 'prime'
+require 'csv'
 
- n = [26,30,39,65,123,143,154,195,\
-    226,231,462,625,715,997,1430,2310,5,6,12,15,18,21,22,24,25,].sort!
+n = CSV.read('denominators.csv',headers: false, converters: :integer, skip_lines: "#", ).flatten # if possible content in CSV-file is treated as integer,flatten => we only need a one-dimensional-array
+n.delete_if { |i|
+  i.is_a?(String) || i == nil || i < 2
+}  # get rid of all elements that are strings or nil or < 2
+
+ n = n.sort #looks better, and if there is a string, we would get an error (so n.delete_if is string is not needed, but then scripts stops)
  r = n.reduce(1,:lcm) # we do this at first, because we need to know how many digits the result has.
  k = []  # starts empty, helps to get uniq primefactors 
  s = []  # starts empty, helps to do spacing in cell (b)
