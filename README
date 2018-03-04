@@ -1,19 +1,71 @@
-# show how to get primefactors for lowest common multiple, like you would do on paper
-# fraction, prime division
-# example numbers (denominator, Nenner) => [6,12,24,18,25,15]
+The script dpf.rb will calculate and draw the primefactors of numbers read from file denominators.csv.
 
-# result should look like this
+To get the result, you just have to execute ruby dpf.rb on command line.
+Change denominators.csv for your needs.
+
+What you get is an image of a simple table, with the fields (a), (b), (c) and (d). 
 
  (a)|(b)
  ---+---
  (d)|(c)
 
-# where (a) are the col and the rows for the denominator
-# (b) are the cols and the rows for the primefactors of each denominator
-# (c) is the line with the (row and the cols of the) total primefactors for the lowest common multiple 
-# (d) is the cell for the result of the lowest common multiple
+The field (a) has as many rows as numbers in denominators.csv.
+(b) and (c) have as many rows as primefactors for the given numbers exist.
+Each number in (a) is split in its primefactors in (b). Same primes in (b) are placed in same column. If one number has identical primes, these primes are written besides. So every prime has its own column.
+The fields (a) and (d) have only one column and (d) only one row, so (d) is just one cell. In this cell the result -- the lowest common multiple -- is shown.
 
-for the example numbers it should look like this 
+Here is an example like you would draw and calculate on paper.
+At first you draw a simple table of one vertical and one horizontal line.
+This gives you the fields (a), (b), (c) and (d) shown above. In field (a) you place the denominators of your fractions. So this maybe the numbers 6, 12, 15, 18, 24 and 25 of this example.
+
+   6|
+  12|
+  15|
+  18|
+  24|
+  25|
+----+-------------
+    |
+
+
+Next you write the primefactors of each number, beginning with the lowest in numerical order. Near to 6 you write 2, then you write two times 2 near 12, because 12 has this primefactor two times.
+15 does not have this primefactor. 18 has one primefactor 2, 24 has three times primefactor 2. 25 like 15 does not have this primefactor.
+
+   6|2  
+  12|2 2
+  15|   
+  18|2  
+  24|2 2 2
+  25|
+----+-------------
+    |
+
+
+You start again with 6. The last primefactor of 6 is 3, so you write it down in a new column, remember only same primes are written in same column. 12 has this primefactor too. For 15 this is the first primefactor, but because of same primes in same columns it is placed below the 3 above. 8 has two times this primefactor. 24 has it one time. 25 has no primefactor 3.
+
+   6|2     3
+  12|2 2   3
+  15|      3
+  18|2     3 3
+  24|2 2 2 3
+  25|
+----+-------------
+    |
+
+Again you start with 6, but you are ready here. Next is 12, ready as well. 15 has one primefactor 5, remember to write a new column, now 15 is ready too. Next are 18 and 24, both are ready too. Last number is 25, therefore 5  is the first primefactor and the last. You are ready in field (b).
+
+   6|2     3
+  12|2 2   3
+  15|      3   5
+  18|2     3 3
+  24|2 2 2 3
+  25|          5 5
+----+-------------
+    |
+
+
+Now look to field (c), it has only one row but the same columns as (b). The only thing you have to do here is to write each prime of one column one time, So, for first, second and third column you write 2, then for forth and fifths you write 3 and for both last columns you write down 5.
+To get the result in field (d) you multiple all primes in (c).
 
    6|2     3
   12|2 2   3
@@ -24,35 +76,6 @@ for the example numbers it should look like this
 ----+-------------
 1800|2 2 2 3 3 5 5
 
-# ruby code (first tries)
 
-# how to get primefactors (for example numbers)
-6.prime_division
-=> [[2,1],[3,1]]
-
-12.prime_division
-=> [[2,2],[3,1]]
-
-15.prime_division
-=> [[3,1],[5,1]]
-
-18.prime_division
-=> [[2,1],[3,2]]
-
-24.prime_division
-=> [[2,3],[3,1]]
-
-25.prime_division
-=> [[5,2]]
-
-
-u = a | b |c # how to get uniq data
-
-m = u.group_by(& :first).map { |f,l| l.max} # how to get only the highest index for one primefactor
-
-# how much primefactors do we need at all?
-p = m.map { |f,l| l}.sum
-
-# shortform if only the lowest common multiple (as result) is needed
-r = [6,12,24,18,25,15].reduce(1,:lcm) # not my idea, someone did this before
-
+That's it.
+More examples in dir images/
