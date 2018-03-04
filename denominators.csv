@@ -1,0 +1,13 @@
+# this is a comment
+0,1,26, 30,39,65,123,143,154,195,s 188,zwei
+226,,,,,,231,462,625,715,997,1430,
+2310,5,6,12,15,18,21,22,24
+
+
+
+# this is also a comment
+
+-2
+25  # whole line is treated as comment    
+# next line will be 
+25
